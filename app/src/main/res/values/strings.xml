@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Hitung BMR</string>
+    <string name="bmr_intro">Kalkulator penghitung BMR untuk menghitung estimasi kebutuhan asupan kalori individu per hari.\nAlat pintar ini menggunakan Persamaan Mifflin-St Jeor.</string>
+    <string name="usia">Usia (tahun)</string>
+    <string name="tinggi_badan">Tinggi Badan (cm)</string>
+    <string name="berat_badan">Berat Badan (kg)</string>
+    <string name="pria">Laki-laki</string>
+    <string name="wanita">Perempuan</string>
+    <string name="submit">HITUNG</string>
+    <string name="reset">RESET</string>
 </resources>
