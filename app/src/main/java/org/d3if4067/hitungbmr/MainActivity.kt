@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
             reset()
         }
 
-        val spinner = binding.spinner
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
             this,
@@ -31,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             // Apply the adapter to the spinner
-            spinner.adapter = adapter
+            binding.spinner.adapter = adapter
         }
     }
 
@@ -42,21 +41,22 @@ class MainActivity : AppCompatActivity() {
         val tinggi = binding.tinggiBadanInp.text.toString().toFloat()
         val berat = binding.beratBadanInp.text.toString().toFloat()
 
-        val bmr = (10 * berat) + (6.25 * tinggi) - (5 * usia) + 5
+
 
         // === Untuk Pria: ===
         // BMR = (10 × berat dalam kg) + (Tinggi 6,25 × dalam cm) – (usia 5 × dalam tahun) + 5
         if (selectedId == R.id.priaRadioButton) {
+            val bmrPria = (10 * berat) + (6.25 * tinggi) - (5 * usia) + 5
             val spinner = binding.spinner
             when (spinner.selectedItem) {
                 "Hampir tidak pernah berolahraga" -> {
-                    binding.bmrTextView.text = getString(R.string.bmr_result, bmr*1.2)
+                    binding.bmrTextView.text = getString(R.string.bmr_result, bmrPria*1.2)
                 }
                 "Jarang berolahraga" -> {
-                    binding.bmrTextView.text = getString(R.string.bmr_result, bmr*1.3)
+                    binding.bmrTextView.text = getString(R.string.bmr_result, bmrPria*1.3)
                 }
                 "Sering berolahraga atau beraktivitas fisik berat" -> {
-                    binding.bmrTextView.text = getString(R.string.bmr_result, bmr*1.4)
+                    binding.bmrTextView.text = getString(R.string.bmr_result, bmrPria*1.4)
                 }
             }
         }
@@ -64,16 +64,17 @@ class MainActivity : AppCompatActivity() {
         // === Untuk Wanita: ===
         // BMR = (10 × berat dalam kg) + (Tinggi 6,25 × dalam cm) – (usia 5 × tahun) – 161
         else if (selectedId == R.id.wanitaRadioButton) {
+            val bmrWanita = (10 * berat) + (6.25 * tinggi) - (5 * usia) - 161
             val spinner = binding.spinner
             when (spinner.selectedItem) {
                 "Hampir tidak pernah berolahraga" -> {
-                    binding.bmrTextView.text = getString(R.string.bmr_result, bmr*1.2)
+                    binding.bmrTextView.text = getString(R.string.bmr_result, bmrWanita*1.2)
                 }
                 "Jarang berolahraga" -> {
-                    binding.bmrTextView.text = getString(R.string.bmr_result, bmr*1.3)
+                    binding.bmrTextView.text = getString(R.string.bmr_result, bmrWanita*1.3)
                 }
                 "Sering berolahraga atau beraktivitas fisik berat" -> {
-                    binding.bmrTextView.text = getString(R.string.bmr_result, bmr*1.4)
+                    binding.bmrTextView.text = getString(R.string.bmr_result, bmrWanita*1.4)
                 }
             }
         }
