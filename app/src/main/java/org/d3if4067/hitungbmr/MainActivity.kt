@@ -2,7 +2,9 @@ package org.d3if4067.hitungbmr
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import org.d3if4067.hitungbmr.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -36,17 +38,38 @@ class MainActivity : AppCompatActivity() {
 
     private fun hitungBmr() {
         val selectedId = binding.radioGroup.checkedRadioButtonId
+        if (selectedId == -1) {
+            Toast.makeText(this, R.string.gender_invalid, Toast.LENGTH_LONG).show()
+            return
+        }
 
-        val usia = binding.usiaInp.text.toString().toFloat()
-        val tinggi = binding.tinggiBadanInp.text.toString().toFloat()
-        val berat = binding.beratBadanInp.text.toString().toFloat()
+        val usia = binding.usiaInp.text.toString()
+        if (TextUtils.isEmpty(usia)) {
+            Toast.makeText(this, R.string.usia_invalid, Toast.LENGTH_LONG).show()
+            return
+        }
 
+        val berat = binding.beratBadanInp.text.toString()
+        if (TextUtils.isEmpty(berat)) {
+            Toast.makeText(this, R.string.berat_invalid, Toast.LENGTH_LONG).show()
+            return
+        }
 
+        val tinggi = binding.tinggiBadanInp.text.toString()
+        if (TextUtils.isEmpty(tinggi)) {
+            Toast.makeText(this, R.string.tinggi_invalid, Toast.LENGTH_LONG).show()
+            return
+        }
+
+        if (binding.spinner.selectedItem == "Pilih tipe aktivitas Anda!") {
+            Toast.makeText(this, R.string.aktivitas_invalid, Toast.LENGTH_LONG).show()
+            return
+        }
 
         // === Untuk Pria: ===
         // BMR = (10 × berat dalam kg) + (Tinggi 6,25 × dalam cm) – (usia 5 × dalam tahun) + 5
         if (selectedId == R.id.priaRadioButton) {
-            val bmrPria = (10 * berat) + (6.25 * tinggi) - (5 * usia) + 5
+            val bmrPria = (10 * berat.toFloat()) + (6.25 * tinggi.toFloat()) - (5 * usia.toFloat()) + 5
             val spinner = binding.spinner
             when (spinner.selectedItem) {
                 "Hampir tidak pernah berolahraga" -> {
@@ -64,7 +87,7 @@ class MainActivity : AppCompatActivity() {
         // === Untuk Wanita: ===
         // BMR = (10 × berat dalam kg) + (Tinggi 6,25 × dalam cm) – (usia 5 × tahun) – 161
         else if (selectedId == R.id.wanitaRadioButton) {
-            val bmrWanita = (10 * berat) + (6.25 * tinggi) - (5 * usia) - 161
+            val bmrWanita = (10 * berat.toFloat()) + (6.25 * tinggi.toFloat()) - (5 * usia.toFloat()) - 161
             val spinner = binding.spinner
             when (spinner.selectedItem) {
                 "Hampir tidak pernah berolahraga" -> {
