@@ -8,4 +8,14 @@
     <string name="wanita">Perempuan</string>
     <string name="submit">HITUNG</string>
     <string name="reset">RESET</string>
+    <string name="usia_invalid">Usia tidak boleh kosong</string>
+    <string name="tinggi_invalid">Tinggi tidak boleh kosong</string>
+    <string name="berat_invalid">Berat tidak boleh kosong</string>
+    <string name="bmr_result">BMR: %1$.2f kalori / hari</string>
+    <string-array name="activities_array">
+        <item>Pilih tipe aktivitas Anda!</item>
+        <item>Hampir tidak pernah berolahraga</item>
+        <item>Jarang berolahraga</item>
+        <item>Sering berolahraga atau beraktivitas fisik berat</item>
+    </string-array>
 </resources>
