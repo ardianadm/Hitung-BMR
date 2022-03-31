@@ -68,36 +68,44 @@ class MainActivity : AppCompatActivity() {
 
         // === Untuk Pria: ===
         // BMR = (10 × berat dalam kg) + (Tinggi 6,25 × dalam cm) – (usia 5 × dalam tahun) + 5
+        // BMR Pria = 66,5 + (13,7 × berat badan) + (5 × tinggi badan) – (6,8 × usia)
         if (selectedId == R.id.priaRadioButton) {
-            val bmrPria = (10 * berat.toFloat()) + (6.25 * tinggi.toFloat()) - (5 * usia.toFloat()) + 5
+            val bmrPria = 66.5 + (13.7 * berat.toFloat()) + (5 * tinggi.toFloat()) - (6.8 * usia.toFloat())
             val spinner = binding.spinner
             when (spinner.selectedItem) {
                 "Hampir tidak pernah berolahraga" -> {
-                    binding.bmrTextView.text = getString(R.string.bmr_result, bmrPria*1.2)
+                    binding.bmrTextView.text = getString(R.string.bmr_result, bmrPria)
+                    binding.kaloriTextView.text = getString(R.string.kalori_aktivitas_result, bmrPria*1.2)
                 }
                 "Jarang berolahraga" -> {
-                    binding.bmrTextView.text = getString(R.string.bmr_result, bmrPria*1.3)
+                    binding.bmrTextView.text = getString(R.string.bmr_result, bmrPria)
+                    binding.kaloriTextView.text = getString(R.string.kalori_aktivitas_result, bmrPria*1.3)
                 }
                 "Sering berolahraga atau beraktivitas fisik berat" -> {
-                    binding.bmrTextView.text = getString(R.string.bmr_result, bmrPria*1.4)
+                    binding.bmrTextView.text = getString(R.string.bmr_result, bmrPria)
+                    binding.kaloriTextView.text = getString(R.string.kalori_aktivitas_result, bmrPria*1.4)
                 }
             }
         }
 
         // === Untuk Wanita: ===
         // BMR = (10 × berat dalam kg) + (Tinggi 6,25 × dalam cm) – (usia 5 × tahun) – 161
+        // BMR Wanita = 655 + (9,6 × berat badan) + (1,8 × tinggi badan) – (4,7 × usia)
         else if (selectedId == R.id.wanitaRadioButton) {
-            val bmrWanita = (10 * berat.toFloat()) + (6.25 * tinggi.toFloat()) - (5 * usia.toFloat()) - 161
+            val bmrWanita = 655 + (9.6 * berat.toFloat()) + (1.8 * tinggi.toFloat()) - (4.7 * usia.toFloat())
             val spinner = binding.spinner
             when (spinner.selectedItem) {
                 "Hampir tidak pernah berolahraga" -> {
-                    binding.bmrTextView.text = getString(R.string.bmr_result, bmrWanita*1.2)
+                    binding.bmrTextView.text = getString(R.string.bmr_result, bmrWanita)
+                    binding.kaloriTextView.text = getString(R.string.kalori_aktivitas_result, bmrWanita*1.2)
                 }
                 "Jarang berolahraga" -> {
-                    binding.bmrTextView.text = getString(R.string.bmr_result, bmrWanita*1.3)
+                    binding.bmrTextView.text = getString(R.string.bmr_result, bmrWanita)
+                    binding.kaloriTextView.text = getString(R.string.kalori_aktivitas_result, bmrWanita*1.3)
                 }
                 "Sering berolahraga atau beraktivitas fisik berat" -> {
-                    binding.bmrTextView.text = getString(R.string.bmr_result, bmrWanita*1.4)
+                    binding.bmrTextView.text = getString(R.string.bmr_result, bmrWanita)
+                    binding.kaloriTextView.text = getString(R.string.kalori_aktivitas_result, bmrWanita*1.4)
                 }
             }
         }
@@ -110,5 +118,6 @@ class MainActivity : AppCompatActivity() {
         binding.tinggiBadanInp.setText("")
         binding.spinner.setSelection(0)
         binding.bmrTextView.setText("")
+        binding.kaloriTextView.setText("")
     }
 }
