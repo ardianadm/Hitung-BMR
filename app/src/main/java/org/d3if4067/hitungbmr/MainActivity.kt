@@ -66,12 +66,10 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        // Pria: Berat badan ideal (kilogram) = [tinggi badan (sentimeter) – 100] – [(tinggi badan (sentimeter) – 100) x 10 persen]
-        // Wanita: Berat badan ideal (kilogram) = [tinggi badan (sentimeter) – 100] – [(tinggi badan (sentimeter) – 100) x 15 persen]
-
         // === Untuk Pria: ===
         // BMR = (10 × berat dalam kg) + (Tinggi 6,25 × dalam cm) – (usia 5 × dalam tahun) + 5
         // BMR Pria = 66,5 + (13,7 × berat badan) + (5 × tinggi badan) – (6,8 × usia)
+        // Pria: Berat badan ideal (kilogram) = [tinggi badan (sentimeter) – 100] – [(tinggi badan (sentimeter) – 100) x 10 persen]
         if (selectedId == R.id.priaRadioButton) {
             val bmrPria = 66.5 + (13.7 * berat.toFloat()) + (5 * tinggi.toFloat()) - (6.8 * usia.toFloat())
             val beratIdeal = (tinggi.toFloat() - 100) - ((tinggi.toFloat() - 100) * 0.10)
@@ -98,6 +96,7 @@ class MainActivity : AppCompatActivity() {
         // === Untuk Wanita: ===
         // BMR = (10 × berat dalam kg) + (Tinggi 6,25 × dalam cm) – (usia 5 × tahun) – 161
         // BMR Wanita = 655 + (9,6 × berat badan) + (1,8 × tinggi badan) – (4,7 × usia)
+        // Wanita: Berat badan ideal (kilogram) = [tinggi badan (sentimeter) – 100] – [(tinggi badan (sentimeter) – 100) x 15 persen]
         else if (selectedId == R.id.wanitaRadioButton) {
             val bmrWanita = 655 + (9.6 * berat.toFloat()) + (1.8 * tinggi.toFloat()) - (4.7 * usia.toFloat())
             val beratIdeal = (tinggi.toFloat() - 100) - ((tinggi.toFloat() - 100) * 0.15)
