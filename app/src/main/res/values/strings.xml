@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">Hitung BMR dan Kebutuhan Kalori Tubuh</string>
-    <string name="bmr_intro">Basal Metabolic Rate (BMR) adalah kalori yang tubuh Anda perlukan untuk melakukan aktivitas dasar tubuh. Aktivitas tersebut mencakup memompa jantung, mencerna makanan, bernapas, memperbaiki sel tubuh, hingga membuang racun dalam tubuh.</string>
+    <string name="app_name"><b>Kaloriku</b></string>
+    <string name="judul"><b>Hitung BMR dan Kebutuhan Kalori Sehari</b></string>
+    <string name="bmr_intro"><b>Basal Metabolic Rate (BMR)</b> adalah kalori yang tubuh Anda perlukan <b>hanya</b> untuk melakukan aktivitas dasar tubuh. Aktivitas tersebut mencakup memompa jantung, mencerna makanan, bernapas, memperbaiki sel tubuh, hingga membuang racun dalam tubuh.</string>
     <string name="usia">Usia (tahun)</string>
     <string name="tinggi_badan">Tinggi Badan (cm)</string>
     <string name="berat_badan">Berat Badan (kg)</string>
@@ -13,8 +14,8 @@
     <string name="tinggi_invalid">Tinggi badan tidak boleh kosong</string>
     <string name="berat_invalid">Berat badan tidak boleh kosong</string>
     <string name="aktivitas_invalid">Pilih tipe aktivitas Anda!</string>
-    <string name="bmr_result">BMR: %1$.2f kkal / hari</string>
-    <string name="kalori_aktivitas_result">Kebutuhan kalori tubuh: %1$.2f kkal / hari</string>
+    <string name="bmr_result">BMR: %1$.2f kkal/hari</string>
+    <string name="kalori_aktivitas_result">Kebutuhan kalori sehari: %1$.2f kkal/hari</string>
     <string-array name="activities_array">
         <item>Pilih tipe aktivitas Anda!</item>
         <item>Hampir tidak pernah berolahraga</item>
