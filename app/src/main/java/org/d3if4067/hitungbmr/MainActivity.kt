@@ -130,5 +130,6 @@ class MainActivity : AppCompatActivity() {
         binding.spinner.setSelection(0)
         binding.bmrTextView.setText("")
         binding.kaloriTextView.setText("")
+        binding.beratIdealTextView.setText("")
     }
 }
