@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnSubmit.setOnClickListener {
             hitungBmr()
         }
+        viewModel.getHasilBmr().observe(this, { showResult(it) })
 
         binding.btnReset.setOnClickListener {
             reset()
@@ -72,18 +73,18 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        val result = viewModel.hitungBmr(
+        viewModel.hitungBmr(
             selectedId == R.id.priaRadioButton,
             usia.toDouble(),
             berat.toDouble(),
             tinggi.toDouble(),
             binding
         )
-
-        showResult(result)
     }
 
-    private fun showResult (result: HasilBmr) {
+    private fun showResult (result: HasilBmr?) {
+        if (result == null) return
+
         binding.bmrTextView.text = getString(R.string.bmr_result, result.bmr)
         binding.kaloriTextView.text = getString(R.string.kalori_aktivitas_result, result.bmrAktivitas)
         binding.beratIdealTextView.text = getString(R.string.berat_ideal_result, result.beratIdeal)
