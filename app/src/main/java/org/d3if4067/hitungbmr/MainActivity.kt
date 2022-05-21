@@ -5,11 +5,16 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import org.d3if4067.hitungbmr.databinding.ActivityMainBinding
 import org.d3if4067.hitungbmr.model.HasilBmr
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+
+    private val viewModel: MainViewModel by lazy {
+        ViewModelProvider(this)[MainViewModel::class.java]
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,40 +72,15 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        val result = hitungBmr(
+        val result = viewModel.hitungBmr(
             selectedId == R.id.priaRadioButton,
             usia.toDouble(),
             berat.toDouble(),
-            tinggi.toDouble()
+            tinggi.toDouble(),
+            binding
         )
 
         showResult(result)
-    }
-
-    private fun hitungBmr (isMale: Boolean, usia: Double, berat: Double, tinggi: Double): HasilBmr {
-        if (isMale) {
-            val bmr = 66.5 + (13.7 * berat) + (5 * tinggi) - (6.8 * usia)
-            val bmrAktivitas = getBmrAktivitas(bmr)
-            val beratIdeal = (tinggi - 100) - ((tinggi - 100) * 0.10)
-
-            return HasilBmr(bmr, bmrAktivitas, beratIdeal)
-        } else {
-            val bmr = 655 + (9.6 * berat) + (1.8 * tinggi) - (4.7 * usia)
-            val bmrAktivitas = getBmrAktivitas(bmr)
-            val beratIdeal = (tinggi - 100) - ((tinggi - 100) * 0.15)
-
-            return HasilBmr(bmr, bmrAktivitas, beratIdeal)
-        }
-    }
-
-    private fun getBmrAktivitas(bmr: Double): Double {
-        val spinner = binding.spinner
-        val bmrAktivitas = when (spinner.selectedItem) {
-            "Hampir tidak pernah berolahraga" -> bmr*1.2
-            "Jarang berolahraga" -> bmr*1.3
-            else -> bmr*1.4
-        }
-        return bmrAktivitas
     }
 
     private fun showResult (result: HasilBmr) {
