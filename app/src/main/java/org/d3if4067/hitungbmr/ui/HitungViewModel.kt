@@ -1,15 +1,15 @@
-package org.d3if4067.hitungbmr
+package org.d3if4067.hitungbmr.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.d3if4067.hitungbmr.databinding.ActivityMainBinding
+import org.d3if4067.hitungbmr.databinding.FragmentHitungBinding
 import org.d3if4067.hitungbmr.model.HasilBmr
 
 class MainViewModel : ViewModel() {
     private val hasilBmr = MutableLiveData<HasilBmr?>()
 
-    fun hitungBmr (isMale: Boolean, usia: Double, berat: Double, tinggi: Double, binding: ActivityMainBinding) {
+    fun hitungBmr (isMale: Boolean, usia: Double, berat: Double, tinggi: Double, binding: FragmentHitungBinding) {
         if (isMale) {
             val bmr = 66.5 + (13.7 * berat) + (5 * tinggi) - (6.8 * usia)
             val bmrAktivitas = getBmrAktivitas(bmr, binding)
@@ -25,7 +25,7 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    private fun getBmrAktivitas(bmr: Double, binding: ActivityMainBinding): Double {
+    private fun getBmrAktivitas(bmr: Double, binding: FragmentHitungBinding): Double {
         val spinner = binding.spinner
         val bmrAktivitas = when (spinner.selectedItem) {
             "Hampir tidak pernah berolahraga" -> bmr*1.2
