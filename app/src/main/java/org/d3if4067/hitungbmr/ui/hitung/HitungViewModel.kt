@@ -15,8 +15,6 @@ import org.d3if4067.hitungbmr.model.HasilBmr
 class HitungViewModel(private val db: BmrDao) : ViewModel() {
     private val hasilBmr = MutableLiveData<HasilBmr?>()
 
-    val data = db.getLastBmr()
-
     fun hitungBmr (isMale: Boolean, usia: Double, berat: Double, tinggi: Double, binding: FragmentHitungBinding) {
         if (isMale) {
             val bmr = 66.5 + (13.7 * berat) + (5 * tinggi) - (6.8 * usia)

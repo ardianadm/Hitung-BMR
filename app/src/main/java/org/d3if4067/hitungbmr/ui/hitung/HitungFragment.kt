@@ -41,11 +41,6 @@ class HitungFragment : Fragment() {
             showResult(it)
         })
 
-        viewModel.data.observe(viewLifecycleOwner, {
-            if (it == null) return@observe
-            Log.d("HitungFragment", "Data tersimpan. ID = ${it}")
-        })
-
         binding.btnReset.setOnClickListener {
             reset()
         }
