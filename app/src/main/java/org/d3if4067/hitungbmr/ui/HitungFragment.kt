@@ -1,5 +1,6 @@
 package org.d3if4067.hitungbmr.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
@@ -39,6 +40,8 @@ class HitungFragment : Fragment() {
         binding.btnReset.setOnClickListener {
             reset()
         }
+
+        binding.shareButton.setOnClickListener { shareData() }
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(
@@ -112,6 +115,29 @@ class HitungFragment : Fragment() {
         binding.bmrTextView.text = getString(R.string.bmr_result, result.bmr)
         binding.kaloriTextView.text = getString(R.string.kalori_aktivitas_result, result.bmrAktivitas)
         binding.beratIdealTextView.text = getString(R.string.berat_ideal_result, result.beratIdeal)
+        binding.shareButton.visibility = View.VISIBLE
+    }
+
+    private fun shareData() {
+        val selectedId = binding.radioGroup.checkedRadioButtonId
+        val gender = if (selectedId == R.id.priaRadioButton)
+            getString(R.string.pria)
+        else
+            getString(R.string.wanita)
+        val message = getString(
+            R.string.bagikan_template,
+            binding.beratBadanInp.text,
+            binding.tinggiBadanInp.text,
+            gender,
+            binding.bmrTextView.text,
+            binding.kaloriTextView.text
+        )
+        val shareIntent = Intent(Intent.ACTION_SEND)
+        shareIntent.setType("text/plain").putExtra(Intent.EXTRA_TEXT, message)
+        if (shareIntent.resolveActivity(
+                requireActivity().packageManager) != null) {
+                    startActivity(shareIntent)
+        }
     }
 
     private fun reset() {
