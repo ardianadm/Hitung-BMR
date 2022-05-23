@@ -1,13 +1,21 @@
-package org.d3if4067.hitungbmr.ui
+package org.d3if4067.hitungbmr.ui.hitung
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.d3if4067.hitungbmr.databinding.FragmentHitungBinding
+import org.d3if4067.hitungbmr.db.BmrDao
+import org.d3if4067.hitungbmr.db.BmrEntity
 import org.d3if4067.hitungbmr.model.HasilBmr
 
-class MainViewModel : ViewModel() {
+class HitungViewModel(private val db: BmrDao) : ViewModel() {
     private val hasilBmr = MutableLiveData<HasilBmr?>()
+
+    val data = db.getLastBmr()
 
     fun hitungBmr (isMale: Boolean, usia: Double, berat: Double, tinggi: Double, binding: FragmentHitungBinding) {
         if (isMale) {
@@ -16,12 +24,36 @@ class MainViewModel : ViewModel() {
             val beratIdeal = (tinggi - 100) - ((tinggi - 100) * 0.10)
 
             hasilBmr.value = HasilBmr(bmr, bmrAktivitas, beratIdeal)
+
+            viewModelScope.launch {
+                withContext(Dispatchers.IO) {
+                    val dataBmr = BmrEntity(
+                        isMale = isMale,
+                        usia = usia,
+                        berat = berat,
+                        tinggi = tinggi
+                    )
+                    db.insert(dataBmr)
+                }
+            }
         } else {
             val bmr = 655 + (9.6 * berat) + (1.8 * tinggi) - (4.7 * usia)
             val bmrAktivitas = getBmrAktivitas(bmr, binding)
             val beratIdeal = (tinggi - 100) - ((tinggi - 100) * 0.15)
 
             hasilBmr.value = HasilBmr(bmr, bmrAktivitas, beratIdeal)
+
+            viewModelScope.launch {
+                withContext(Dispatchers.IO) {
+                    val dataBmr = BmrEntity(
+                        isMale = isMale,
+                        usia = usia,
+                        berat = berat,
+                        tinggi = tinggi
+                    )
+                    db.insert(dataBmr)
+                }
+            }
         }
     }
 

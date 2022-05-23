@@ -1,8 +1,9 @@
-package org.d3if4067.hitungbmr.ui
+package org.d3if4067.hitungbmr.ui.hitung
 
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -11,13 +12,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import org.d3if4067.hitungbmr.R
 import org.d3if4067.hitungbmr.databinding.FragmentHitungBinding
+import org.d3if4067.hitungbmr.db.BmrDb
 import org.d3if4067.hitungbmr.model.HasilBmr
 
 class HitungFragment : Fragment() {
     private lateinit var binding: FragmentHitungBinding
 
-    private val viewModel: MainViewModel by lazy {
-        ViewModelProvider(requireActivity())[MainViewModel::class.java]
+    private val viewModel: HitungViewModel by lazy {
+        val db = BmrDb.getInstance(requireContext())
+        val factory = HitungViewModelFactory(db.dao)
+        ViewModelProvider(this, factory)[HitungViewModel::class.java]
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -35,6 +39,11 @@ class HitungFragment : Fragment() {
 
         viewModel.getHasilBmr().observe(requireActivity(), {
             showResult(it)
+        })
+
+        viewModel.data.observe(viewLifecycleOwner, {
+            if (it == null) return@observe
+            Log.d("HitungFragment", "Data tersimpan. ID = ${it}")
         })
 
         binding.btnReset.setOnClickListener {

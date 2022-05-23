@@ -11,6 +11,5 @@ data class BmrEntity(
     var isMale: Boolean,
     var usia: Double,
     var berat: Double,
-    var tinggi: Double,
-    var aktivitas: String
+    var tinggi: Double
 )

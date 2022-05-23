@@ -11,7 +11,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 //import org.d3if4067.hitungbmr.databinding.ActivityMainBinding
 import org.d3if4067.hitungbmr.model.HasilBmr
-import org.d3if4067.hitungbmr.ui.MainViewModel
+//import org.d3if4067.hitungbmr.ui.MainViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
