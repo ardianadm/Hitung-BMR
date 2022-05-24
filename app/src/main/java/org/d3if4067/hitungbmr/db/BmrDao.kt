@@ -12,4 +12,7 @@ interface BmrDao {
 
     @Query("SELECT * FROM bmr ORDER BY id DESC")
     fun getLastBmr(): LiveData<List<BmrEntity>>
+
+    @Query("DELETE FROM bmr")
+    fun clearData()
 }
