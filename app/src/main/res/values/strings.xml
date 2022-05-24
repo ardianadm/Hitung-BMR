@@ -25,7 +25,7 @@
     </string-array>
 
     <string name="tentang_aplikasi">Tentang Aplikasi</string>
-    <string name="copyright">Hitung BMI merupakan sebuah aplikasi Android untuk menghitung body mass index (BMI) sehingga seseorang dapat mengetahui apakah berat badannya ideal, gemuk atau kurus.\n\nAplikasi ini dibuat untuk kelas Mobpro 1. Temukan kodenya di https://github.com/indraazimi/hitung- bmi\n\nCopyright © 2021 Indra Azimi.\nAll rights reserved.</string>
+    <string name="copyright">Kaloriku adalah aplikasi yang berguna untuk menghitung tiga hal, di antaranya yaitu BMR (Basal Metabolic Rate), kebutuhan kalori sehari, dan berat badan ideal manusia\n\nAplikasi ini diibuat untuk kebutuhan mata kuliah Pemrograman untuk Perangkat Bergerak 1.\n\nCopyright © 2022 Ardian Adam Alfarisyi.\nAll rights reserved.</string>
 
     <string name="bagikan">Bagikan</string>
 
