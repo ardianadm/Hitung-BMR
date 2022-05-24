@@ -152,7 +152,8 @@ class HitungFragment : Fragment() {
             binding.tinggiBadanInp.text,
             gender,
             binding.bmrTextView.text,
-            binding.kaloriTextView.text
+            binding.kaloriTextView.text,
+            binding.beratIdealTextView.text
         )
         val shareIntent = Intent(Intent.ACTION_SEND)
         shareIntent.setType("text/plain").putExtra(Intent.EXTRA_TEXT, message)

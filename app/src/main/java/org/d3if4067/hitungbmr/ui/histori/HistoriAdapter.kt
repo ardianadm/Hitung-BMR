@@ -3,6 +3,7 @@ package org.d3if4067.hitungbmr.ui.histori
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -41,15 +42,19 @@ class HistoriAdapter : ListAdapter<BmrEntity, HistoriAdapter.ViewHolder>(DIFF_CA
 
         fun bind(item: BmrEntity) = with(binding) {
             val hasilBmr = item.hitungBmr()
-            val circleBg = kategoriTextView.background as GradientDrawable
+
+            val gender = root.context.getString(
+                if (item.isMale) R.string.pria else R.string.wanita)
+
+            genderTextView.text = gender.substring(0, 1)
+            val colorRes = if (item.isMale) R.color.navy1 else R.color.navy2
+            val circleBg = genderTextView.background as GradientDrawable
+            circleBg.setColor(ContextCompat.getColor(root.context, colorRes))
 
             tanggalTextView.text = dateFormatter.format(Date(item.tanggal))
 
             bmrTextView.text = root.context.getString(R.string.hasil_x,
                 hasilBmr.bmr, hasilBmr.bmrAktivitas, hasilBmr.beratIdeal)
-
-            val gender = root.context.getString(
-                if (item.isMale) R.string.pria else R.string.wanita)
 
             dataTextView.text = root.context.getString(R.string.data_x,
                 item.berat, item.tinggi, gender)
