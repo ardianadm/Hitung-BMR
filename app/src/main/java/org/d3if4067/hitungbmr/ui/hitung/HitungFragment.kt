@@ -110,13 +110,25 @@ class HitungFragment : Fragment() {
             return
         }
 
+        val aktivitas = getBmrAktivitas()
+
         viewModel.hitungBmr(
             selectedId == R.id.priaRadioButton,
             usia.toDouble(),
             berat.toDouble(),
             tinggi.toDouble(),
-            binding
+            aktivitas
         )
+    }
+
+    private fun getBmrAktivitas(): String {
+        val spinner = binding.spinner
+        val bmrAktivitas = when (spinner.selectedItem) {
+            "Hampir tidak pernah berolahraga" -> "Hampir tidak pernah berolahraga"
+            "Jarang berolahraga" -> "Jarang berolahraga"
+            else -> "Sering berolahraga atau beraktivitas fisik berat"
+        }
+        return bmrAktivitas
     }
 
     private fun showResult (result: HasilBmr?) {

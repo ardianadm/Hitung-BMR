@@ -34,4 +34,7 @@
     <string name="belum_ada_data">Belum ada data</string>
 
     <string name="histori">Histori</string>
+
+    <string name="hasil_x">BMR: %1$.2f - BMR Aktivitas: %2$.2f - Berat Ideal: %3$.2f</string>
+    <string name="data_x">BB: %1$.1f - TB: %2$.1f - %3$s</string>
 </resources>

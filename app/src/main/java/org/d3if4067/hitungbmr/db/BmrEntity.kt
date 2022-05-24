@@ -2,6 +2,7 @@ package org.d3if4067.hitungbmr.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import org.d3if4067.hitungbmr.databinding.FragmentHitungBinding
 
 @Entity(tableName = "bmr")
 data class BmrEntity(
@@ -11,5 +12,6 @@ data class BmrEntity(
     var isMale: Boolean,
     var usia: Double,
     var berat: Double,
-    var tinggi: Double
+    var tinggi: Double,
+    var aktivitas: String
 )
