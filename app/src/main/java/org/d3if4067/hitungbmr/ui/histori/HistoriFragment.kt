@@ -6,7 +6,9 @@ import android.view.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.launch
 import org.d3if4067.hitungbmr.R
+import org.d3if4067.hitungbmr.data.SettingDataStore
+import org.d3if4067.hitungbmr.data.dataStore
 import org.d3if4067.hitungbmr.databinding.FragmentHistoriBinding
 import org.d3if4067.hitungbmr.db.BmrDb
 
@@ -28,7 +32,7 @@ class HistoriFragment : Fragment() {
     private lateinit var binding: FragmentHistoriBinding
     private lateinit var myAdapter: HistoriAdapter
     private var isLinearLayoutManager = true
-
+    private lateinit var layoutDataStore: SettingDataStore
 
     private fun chooseLayout() {
         if (isLinearLayoutManager) {
@@ -62,6 +66,15 @@ class HistoriFragment : Fragment() {
             adapter = myAdapter
             setHasFixedSize(true)
         }
+
+        layoutDataStore = SettingDataStore(requireContext().dataStore)
+        layoutDataStore.preferenceFlow.asLiveData()
+            .observe(viewLifecycleOwner, { value ->
+                isLinearLayoutManager = value
+                chooseLayout()
+                activity?.invalidateOptionsMenu()
+            })
+
         viewModel.data.observe(viewLifecycleOwner, {
             binding.emptyView.visibility = if (it.isEmpty())
                 View.VISIBLE else View.GONE
@@ -77,26 +90,25 @@ class HistoriFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
+        when (item.itemId) {
             R.id.action_switch_layout -> {
                 isLinearLayoutManager = !isLinearLayoutManager
 
-//                lifecycleScope.launch {
-//                    layoutDataStore.saveLayoutToPreferencesStore(
-//                        isLinearLayoutManager, requireContext()
-//                    )
-//                }
+                lifecycleScope.launch {
+                    layoutDataStore.saveLayoutToPreferencesStore(
+                        isLinearLayoutManager, requireContext()
+                    )
+                }
                 chooseLayout()
                 setIcon(item)
-                true
+                return true
             }
-            else -> super.onOptionsItemSelected(item)
+            R.id.menu_hapus -> {
+                hapusData()
+                return true
+            }
         }
 
-        if (item.itemId == R.id.menu_hapus) {
-            hapusData()
-            return true
-        }
         return super.onOptionsItemSelected(item)
     }
 
