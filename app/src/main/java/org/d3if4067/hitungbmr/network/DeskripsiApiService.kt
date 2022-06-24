@@ -26,5 +26,12 @@ interface DeskripsiApiService {
 
 object DeskripsiApi {
     val service: DeskripsiApiService by lazy {
-        retrofit.create(DeskripsiApiService::class.java) }
+        retrofit.create(DeskripsiApiService::class.java)
+    }
+
+    fun getLainnyaUrl(nama: String): String {
+        return "$BASE_URL$nama.jpg"
+    }
 }
+
+enum class ApiStatus { LOADING, SUCCESS, FAILED }

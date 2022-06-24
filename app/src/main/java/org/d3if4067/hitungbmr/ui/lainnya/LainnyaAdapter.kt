@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import org.d3if4067.hitungbmr.R
 import org.d3if4067.hitungbmr.databinding.ListItemBinding
 import org.d3if4067.hitungbmr.model.Lainnya
+import org.d3if4067.hitungbmr.network.DeskripsiApi
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
@@ -33,7 +35,10 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
         fun bind(lainnya: Lainnya) = with(binding) {
             namaTextView.text = lainnya.nama
             latinTextView.text = lainnya.deskripsi
-            imageView.setImageResource(lainnya.imageResId)
+            Glide.with(imageView.context)
+                .load(DeskripsiApi.getLainnyaUrl(lainnya.imageId))
+                .error(R.drawable.ic_baseline_broken_image_24)
+                .into(imageView)
 
             root.setOnClickListener {
                 val message = root.context.getString(R.string.message, lainnya.nama)

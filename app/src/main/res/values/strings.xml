@@ -49,4 +49,6 @@
     <string name="lainnya">Lainnya</string>
 
     <string name="message">%1$s diklik!</string>
+
+    <string name="koneksi_error">Koneksi error</string>
 </resources>
