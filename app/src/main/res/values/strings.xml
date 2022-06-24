@@ -45,4 +45,8 @@
     <string name="batal">Batal</string>
 
     <string name="action_switch_layout">Ubah Layout</string>
+
+    <string name="lainnya">Lainnya</string>
+
+    <string name="message">%1$s diklik!</string>
 </resources>

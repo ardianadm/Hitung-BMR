@@ -8,8 +8,10 @@
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.22509057971014493" />
         <entry key="app/src/main/res/layout/fragment_histori.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_hitung.xml" value="0.308809068467882" />
+        <entry key="app/src/main/res/layout/fragment_lainnya.xml" value="0.16927083333333334" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_histori.xml" value="0.4541005894757699" />
+        <entry key="app/src/main/res/layout/item_list.xml" value="0.1802536231884058" />
         <entry key="app/src/main/res/menu/dropdown_menu.xml" value="0.2358303606817281" />
         <entry key="app/src/main/res/menu/histori_menu.xml" value="0.2953125" />
         <entry key="app/src/main/res/menu/options_menu.xml" value="0.2953125" />

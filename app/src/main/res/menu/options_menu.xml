@@ -14,4 +14,9 @@
         android:title="@string/histori"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/menu_lainnya"
+        android:title="@string/lainnya"
+        app:showAsAction="never" />
+
 </menu>

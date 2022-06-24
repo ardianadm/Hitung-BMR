@@ -76,6 +76,10 @@ class HitungFragment : Fragment() {
                 findNavController().navigate(R.id.action_hitungFragment_to_aboutFragment)
                 return true
             }
+            R.id.menu_lainnya -> {
+                findNavController().navigate(R.id.action_hitungFragment_to_lainnyaFragment)
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }
