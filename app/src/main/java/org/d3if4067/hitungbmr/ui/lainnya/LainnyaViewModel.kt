@@ -1,15 +1,22 @@
 package org.d3if4067.hitungbmr.ui.lainnya
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.d3if4067.hitungbmr.MainActivity
 import org.d3if4067.hitungbmr.model.Lainnya
 import org.d3if4067.hitungbmr.network.ApiStatus
 import org.d3if4067.hitungbmr.network.DeskripsiApi
+import org.d3if4067.hitungbmr.network.UpdateWorker
+import java.util.concurrent.TimeUnit
 
 class LainnyaViewModel : ViewModel() {
     private val data = MutableLiveData<List<Lainnya>>()
@@ -30,6 +37,18 @@ class LainnyaViewModel : ViewModel() {
                 status.postValue(ApiStatus.FAILED)
             }
         }
+    }
+
+    fun scheduleUpdater(app: Application) {
+        val request = OneTimeWorkRequestBuilder<UpdateWorker>()
+            .setInitialDelay(1, TimeUnit.MINUTES)
+            .build()
+
+        WorkManager.getInstance(app).enqueueUniqueWork(
+            "updater",
+            ExistingWorkPolicy.REPLACE,
+            request
+        )
     }
 
     fun getData(): LiveData<List<Lainnya>> = data
